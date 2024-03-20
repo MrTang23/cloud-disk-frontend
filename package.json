@@ -1,0 +1,29 @@
+{
+  "name": "cloud-disk-frontend",
+  "description": "A front-end for a private cloud disk deployed on your own server",
+  "private": true,
+  "version": "0.0.0",
+  "author": {
+    "name": "Amos Tang",
+    "email": "amostang23@outlook.com",
+    "url": "http://amostang.ltd"
+  },
+  "engines": {
+    "node": "21.6.1",
+    "npm": "10.2.4"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.1.6"
+  }
+}

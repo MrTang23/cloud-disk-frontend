@@ -21,7 +21,7 @@ const clickTitle = () => {
 <style scoped>
 .top-main {
     height: 45px;
-    margin: 15px;
+    margin: 20px;
     line-height: 45px;
     display: flex;
     flex-direction: row;
@@ -39,7 +39,8 @@ const clickTitle = () => {
 }
 .title-basic {
     cursor: pointer;
-    padding-left: 15px;
+    padding-left: 20px;
+    letter-spacing: 2px;
 }
 .title-logo{
     cursor: pointer;

@@ -11,10 +11,16 @@ export default [
 		name: "index",
 		children: [
 			{
+				path: "/login",
+				name: "login",
+				component: () => import("../user/Login.vue"),
+			},
+			{
 				path: "/",
 				name: "file-manage",
 				component: () => import("../cloud/FileManage.vue"),
 			}
 		],
 	},
+	
 ];

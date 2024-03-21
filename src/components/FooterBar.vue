@@ -23,7 +23,7 @@ onMounted(() => {
 <style scoped>
 .footer-main {
     letter-spacing: 1px;
-    margin: 0 15px 15px 15px;
+    margin: 0 20px 20px 20px;
     display: flex;
     font-size: 14px;
     font-weight: 500;

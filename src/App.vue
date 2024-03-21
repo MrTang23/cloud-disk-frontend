@@ -17,7 +17,7 @@ import FooterBar from "./components/FooterBar.vue";
     display: flex;
     flex-direction: column;
     height: 100vh;
-    /* background-image: url("./assets/background.jpeg"); */
+    background-image: url("./assets/image/background.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,7 +26,7 @@ import FooterBar from "./components/FooterBar.vue";
 }
 .body {
     flex: 1;
-    margin: 0 15px 15px 15px;
+    margin: 0 20px 20px 20px;
     display: flex;
 }
 </style>

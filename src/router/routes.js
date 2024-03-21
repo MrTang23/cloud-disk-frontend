@@ -18,7 +18,7 @@ export default [
 			{
 				path: "/",
 				name: "file-manage",
-				component: () => import("../cloud/FileManage.vue"),
+				component: () => import("../cloud/FileManageMain.vue"),
 			}
 		],
 	},

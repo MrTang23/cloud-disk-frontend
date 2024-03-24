@@ -126,8 +126,8 @@ onMounted(() => {
 .glass-container {
     /* justify-content: center;
     align-items: center; */
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
     background-color: rgba(60, 60, 60, 0.4);
     /* box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px; */
     transform: translateZ(0);

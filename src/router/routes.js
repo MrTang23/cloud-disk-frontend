@@ -16,11 +16,17 @@ export default [
 				component: () => import("../user/Login.vue"),
 			},
 			{
-				path: "/",
-				name: "file-manage",
+				path: "/file-manage-main",
+				name: "file-manage-main",
 				component: () => import("../cloud/FileManageMain.vue"),
-			}
+				children: [
+					{
+						path: "/",
+						name: "file-manage",
+						component: () => import("../cloud/FileManage.vue"),
+					},
+				],
+			},
 		],
 	},
-	
 ];

@@ -29,6 +29,7 @@ onMounted(() => {
     font-weight: 500;
     flex-direction: column;
     color: white;
+    mix-blend-mode: difference;
 }
 .links {
     flex: 1;

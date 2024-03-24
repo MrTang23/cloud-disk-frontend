@@ -1,12 +1,8 @@
 <template>
-    <router-view></router-view>
     <div class="left-bar glass-container">
     </div>
     <div class="right-bar">
-        <div class="tool-bar glass-container"></div>
-        <div class="file-list glass-container">
-            <img src="../assets/image/fileManageIcon/GenericFolderIcon.png" alt="" height="100px" v-for="i in 500" :key="i">
-        </div>
+        <router-view></router-view>
     </div>
 </template>
 <script setup>
@@ -39,6 +35,7 @@ const checkLoginStatus=()=>{
         router.push('/login')
     }
 }
+
 onMounted(() => {
     checkLoginStatus()  
 });
@@ -52,42 +49,10 @@ onMounted(() => {
 }
 .right-bar{
     flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-.tool-bar {
-    height: 60px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-}
-.file-list {
-    flex: 1;
-    border-radius: 20px;
-    max-height: calc(100vh - 242px);
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-/* 整个滚动条 */
-.file-list::-webkit-scrollbar {
-    width: 5px;
-    
-}
-/* 滚动条里面滑块 */
-.file-list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: white;
-    cursor: pointer;
-    margin: 20px 5px 20px 5px;
-}
-/*滚动条里面轨道*/
-.file-list::-webkit-scrollbar-track {
-    border-radius: 10px;
-    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.2);
-    background: transparent;
 }
 .glass-container {
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
     background-color: rgba(60, 60, 60, 0.4);
     transform: translateZ(0);
 }

@@ -1,11 +1,13 @@
 <template>
     <div class="left-bar glass-container">
+        <LeftBar></LeftBar>
     </div>
     <div class="right-bar">
         <router-view></router-view>
     </div>
 </template>
 <script setup>
+import LeftBar from '../components/LeftBar.vue'
 import { onMounted } from 'vue';
 import { useRouter } from "vue-router";
 import service from "../api/axios.js";

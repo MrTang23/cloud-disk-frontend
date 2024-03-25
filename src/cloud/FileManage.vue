@@ -1,21 +1,30 @@
 <template>
     <div class="main">
         <div class="tool-bar glass-container">
-            <div class="tool-bar-folder" @click="jumpToPath('/')">
-                    /
+            <div class="tool-bar-folder" @click="jumpToPath('/')">/</div>
+            <div
+                v-for="folder in toolbarFolderArray.length"
+                :key="folder"
+                style="display: flex; flex-direction: row"
+            >
+                <div style="line-height: 30px; color: #2e95d3; font-size: 12px">
+                    >
                 </div>
-            <div v-for="folder in toolbarFolderArray.length" :key="folder" style="display: flex;flex-direction: row;">
-                <div style="line-height: 30px;color: #2E95D3;font-size: 12px;">></div>
-                <div class="tool-bar-folder" @click="jumpToPath(toolbarFolderArray[folder - 1].folderPath)">
+                <div
+                    class="tool-bar-folder"
+                    @click="
+                        jumpToPath(toolbarFolderArray[folder - 1].folderPath)
+                    "
+                >
                     {{ toolbarFolderArray[folder - 1].folderName }}
                 </div>
             </div>
         </div>
         <div class="file-list glass-container">
             <table class="table" frame="void">
-                <thead>
+                <thead style="position: sticky; top: 0; z-index: 1">
                     <tr class="table-header">
-                        <th scope="col">
+                        <th scope="col" style="width: 30px">
                             <label for="chooseFile">
                                 <input
                                     type="checkbox"
@@ -23,9 +32,10 @@
                                     id="chooseFile"
                             /></label>
                         </th>
-                        <th scope="col">文件名</th>
-                        <th scope="col">大小</th>
-                        <th scope="col">修改时间</th>
+                        <th scope="col" style="width: 50%">文件名</th>
+                        <th scope="col" style="width: 150px"></th>
+                        <th scope="col" style="width: 150px">大小</th>
+                        <th scope="col" style="width: 200px">修改时间</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,6 +77,34 @@
                                 {{ fileList[count - 1].name }}
                             </div>
                         </td>
+                        <td scope="row">
+                            <div class="icon-list">
+                                <svg
+                                    class="icon-list-single"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="#amos-icon-test"></use>
+                                </svg>
+                                <svg
+                                    class="icon-list-single"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="#amos-icon-test1"></use>
+                                </svg>
+                                <svg
+                                    class="icon-list-single"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="#amos-delete"></use>
+                                </svg>
+                                <svg
+                                    class="icon-list-single"
+                                    aria-hidden="true"
+                                >
+                                    <use xlink:href="#amos-rename"></use>
+                                </svg>
+                            </div>
+                        </td>
                         <td scope="row">{{ fileList[count - 1].size }}</td>
                         <td scope="row">
                             {{ fileList[count - 1].last_modified }}
@@ -90,13 +128,13 @@ const toolbarFolderArray = ref([]); //toolbar的路径数组
 const currentPath = ref(""); //当前路径
 
 //点击toolbar跳转路径
-const jumpToPath=(toPath)=>{
-    sessionStorage.setItem('current_path',toPath)
-    console.log(toPath)
-    currentPath.value = toPath
-    getFileList(toPath)
-    toolbarFolderArray.value=convertToFolderArray(toPath)
-}
+const jumpToPath = (toPath) => {
+    sessionStorage.setItem("current_path", toPath);
+    console.log(toPath);
+    currentPath.value = toPath;
+    getFileList(toPath);
+    toolbarFolderArray.value = convertToFolderArray(toPath);
+};
 
 // 点击页面文件夹进入
 const enterFolder = (fileName, fileType) => {
@@ -108,7 +146,7 @@ const enterFolder = (fileName, fileType) => {
         );
         currentPath.value = sessionStorage.getItem("current_path");
         getFileList(currentPath.value);
-        toolbarFolderArray.value=convertToFolderArray(currentPath.value)
+        toolbarFolderArray.value = convertToFolderArray(currentPath.value);
     }
 };
 
@@ -145,6 +183,9 @@ const getFileList = (current_path) => {
 };
 
 onMounted(() => {
+    if (sessionStorage.current_path == null) {
+        sessionStorage.setItem("current_path", "/");
+    }
     currentPath.value = sessionStorage.getItem("current_path");
     toolbarFolderArray.value = convertToFolderArray(currentPath.value);
     console.log(toolbarFolderArray.value);
@@ -165,6 +206,9 @@ onMounted(() => {
     line-height: 60px;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .file-list {
     flex: 1;
@@ -194,6 +238,7 @@ onMounted(() => {
 .table {
     width: 100%;
     letter-spacing: 1.25px;
+    table-layout: fixed;
 }
 .table-header {
     text-align: left;
@@ -203,6 +248,10 @@ onMounted(() => {
 .table-body {
     font-size: 14px;
     height: 50px;
+    fill: transparent;
+}
+.table-body:hover{
+    fill: white;
 }
 .file-name {
     height: 50px;
@@ -210,7 +259,10 @@ onMounted(() => {
     padding-left: 20px;
     align-items: center;
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .file-name:hover {
     color: #df3079;
@@ -231,5 +283,25 @@ onMounted(() => {
     backdrop-filter: blur(100px);
     background-color: rgba(60, 60, 60, 0.4);
     transform: translateZ(0);
+}
+.icon-list {
+    height: 50px;
+    line-height: 50px;
+    transition: all 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.icon-list-single {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 7px;
+}
+.icon-list-single:hover {
+    background-color: #df3079;
 }
 </style>

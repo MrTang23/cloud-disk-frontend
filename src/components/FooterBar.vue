@@ -41,7 +41,6 @@ onMounted(() => {
 .copyright {
     flex: 1;
     text-align: center;
-    mix-blend-mode: difference;
 }
 .placeholder {
     flex: 1;

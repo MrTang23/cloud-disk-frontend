@@ -11,6 +11,7 @@
 import TopBar from "./components/TopBar.vue";
 import MainBody from "./components/MainBody.vue";
 import FooterBar from "./components/FooterBar.vue";
+import "https://at.alicdn.com/t/c/font_4475184_ovh54jdhgj.js"
 </script>
 <style scoped>
 .main {
@@ -26,7 +27,8 @@ import FooterBar from "./components/FooterBar.vue";
 }
 .body {
     flex: 1;
-    margin: 0 20px 20px 20px;
+    margin: 0 20px 7px 20px;
     display: flex;
+    max-height: calc(100vh - 169px);
 }
 </style>

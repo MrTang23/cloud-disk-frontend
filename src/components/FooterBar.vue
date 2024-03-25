@@ -48,7 +48,7 @@ onMounted(() => {
 }
 .link-button {
     padding: 10px;
-    transition: all 0.6s;
+    transition: all 0.5s;
     border-radius: 10px;
 }
 .link-button:hover {

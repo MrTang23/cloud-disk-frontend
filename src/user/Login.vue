@@ -19,7 +19,7 @@
     </div>
 </template>
 <script setup>
-import md5 from 'js-md5';
+import md5 from "js-md5";
 import { onMounted, ref } from "vue";
 import service from "../api/axios.js";
 import { useRouter } from "vue-router";
@@ -38,10 +38,14 @@ const login = () => {
         .then(function (response) {
             // 获取到的个人信息存储在localStorage中
             localStorage.setItem("token", response.data.data.token);
-            localStorage.setItem("md5_username", md5(response.data.data.username));
-            localStorage.setItem("username",response.data.data.username)
+            localStorage.setItem(
+                "md5_username",
+                md5(response.data.data.username)
+            );
+            localStorage.setItem("username", response.data.data.username);
             localStorage.setItem("email", response.data.data.email);
             localStorage.setItem("uuid", response.data.data.uuid);
+            sessionStorage.setItem("current_path", "/");
             router.push("/");
         })
         .catch(function (error) {
@@ -49,7 +53,7 @@ const login = () => {
         });
 };
 onMounted(() => {
-    localStorage.clear()
+    localStorage.clear();
 });
 </script>
 <style scoped>

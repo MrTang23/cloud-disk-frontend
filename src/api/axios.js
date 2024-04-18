@@ -4,7 +4,7 @@ import axios from "axios";
 
 const service = axios.create({
 	baseURL: "http://127.0.0.1:8000",
-	timeout: 6000,
+	timeout: 60000,
 	headers: { "X-Requested-With": "XMLHttpRequest" },
 });
 
@@ -38,10 +38,10 @@ service.interceptors.response.use(
 	function (error) {
 		// 状态码超出 2xx 触发，如400，403等
 		// 此处写响应失败的代码
-		if (error.response.status == 403) {
+		if (error.response.status === 403) {
 			console.log("jump login");
 			//router.push("/login");
-		} else if (error.response.data.message == undefined) {
+		} else if (error.response.data.message === undefined) {
 			alert(error.message);
 		} else {
 			alert(error.response.data.message);

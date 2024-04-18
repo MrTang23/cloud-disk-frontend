@@ -24,6 +24,7 @@ import "https://at.alicdn.com/t/c/font_4475184_ovh54jdhgj.js"
     background-size: cover;
     background-attachment: fixed;
     background-color: black;
+    overflow: hidden;
 }
 .body {
     flex: 1;

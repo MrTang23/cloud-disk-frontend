@@ -9,11 +9,11 @@
             />
             <div class="title-basic" @click="clickTitle">Amos Cloud</div>
         </div>
-        <div class="right">{{username}}</div>
+        <div class="right"></div>
     </div>
 </template>
 <script setup>
-import { onMounted ,ref} from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const username = ref("");

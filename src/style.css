@@ -1,0 +1,27 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, .88);
+    background-color: #fff;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: flex;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /*  浅色主题适配 */
+    }
+
+}

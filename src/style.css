@@ -1,8 +1,8 @@
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: source-han-sans-simplified-c, sans-serif;
+    font-style: normal;
     font-size: 17px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, .88);
+    color: rgba(0, 0, 0, 0.88);
     background-color: #fff;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -10,14 +10,16 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+body, #app {
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
-    position: fixed;
+    position: relative;
     display: flex;
+    flex-direction: column;
 }
+
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -25,3 +27,5 @@ body {
     }
 
 }
+
+

@@ -3,8 +3,9 @@
 </script>
 
 <template>
-    <router-view></router-view>
+file
 </template>
 
 <style scoped>
+
 </style>

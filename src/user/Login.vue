@@ -1,6 +1,48 @@
 <script setup>
-
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {GET, POST} from "../api/httpClient.js";
+import {ref, watch} from "vue";
+
+const showUserNotExitInfo = ref(false);
+const showPasswordInput = ref(false)
+const password = ref('')
+const identifier = ref('')
+const identifierType = ref('')
+
+const checkUserExist = () => {
+    const identifierValue = identifier.value;
+    if (identifierValue) {
+        const url = `/find_user?identifier=${encodeURIComponent(identifierValue)}`;
+        return GET(url)
+            .then(response => {
+                identifierType.value = response.data
+                document.getElementById('identifier-input').style.borderRadius = '12px 12px 0 0'
+                showPasswordInput.value = true;
+
+                // 请求成功后添加监听器
+                watch(identifier, () => {
+                    showPasswordInput.value = false;
+                    document.getElementById('identifier-input').style.borderRadius = '12px'
+                });
+
+            })
+            .catch(() => {
+                showUserNotExitInfo.value = true;
+            });
+    }
+}
+
+const login = () => {
+    POST('/login', {
+        identifier_type: identifierType.value,
+        identifier: identifier.value,
+        password: password.value
+    })
+        .then(response => {
+            console.log(response)
+        })
+        .catch()
+}
 </script>
 
 <template>
@@ -16,10 +58,35 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
                 </div>
 
                 <div class="login-form">
-                    <input class="login-form-top login-input" type="text" placeholder=" "/>
+                    <!-- 标识符输入 -->
+                    <input class="login-form-top login-input" type="text" placeholder=" " v-model="identifier"
+                           id="identifier-input"/>
                     <span class="login-placeholder">电子邮件或用户名</span>
-                    <FontAwesomeIcon :icon="['far', 'circle-right']" class="input-icon"/>
+                    <FontAwesomeIcon :icon="['far', 'circle-right']" class="input-icon" @click="checkUserExist"
+                                     v-if="!showPasswordInput"/>
+
+                    <!-- 密码输入 -->
+                    <div class="login-password-main" v-if="showPasswordInput">
+                        <input class="login-form-password login-input" type="password" placeholder=" "
+                               v-model="password"/>
+                        <span class="login-placeholder">密码</span>
+                        <FontAwesomeIcon :icon="['far', 'circle-right']" class="input-icon" @click="login"/>
+                    </div>
+
+
+                    <!-- 提示信息 -->
+                    <div class="login-user-not-exist" v-if="showUserNotExitInfo">
+                        抱歉，未找到该用户名或邮箱。<br>请确保输入正确，或选择注册一个新账户。
+                    </div>
                 </div>
+                <div class="login-align">
+                    <div class="keep-login">
+                        <input type="checkbox" name="option1" value="1" class="check-box">保持我的登录状态
+                    </div>
+                    <div class="login-bottom-button">忘记了密码？</div>
+                    <div class="login-bottom-button">创建 Amos Cloud 账户</div>
+                </div>
+
             </div>
         </div>
         <div class="footer footer-text">
@@ -87,6 +154,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 }
 
 .login-form {
+    height: 112px;
     margin-top: 44px;
     display: flex;
     flex-direction: column;
@@ -94,6 +162,20 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 .login-form-top {
     border-radius: 12px;
+    border: 1px solid #86868b;
+}
+
+.login-form-password {
+    border: 1px solid #86868b;
+    letter-spacing: 2px;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.login-password-main {
+    margin-top: 17px;
+    display: flex;
+    flex-direction: column;
 }
 
 .login-input {
@@ -101,7 +183,6 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     z-index: 99;
     font-size: 17px;
     color: #1d1d1d;
-    border: 1px solid #86868b;
     display: flex;
     flex-direction: column;
     height: 54px;
@@ -118,6 +199,12 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     transform: translateY(0); /* 初始位置 */
     margin-top: -38px; /* 向上预留空间 */
     margin-left: 20px;
+}
+
+.login-user-not-exist {
+    margin-top: 20px;
+    color: #FF3B30;
+    font-size: 14px;
 }
 
 .input-icon {
@@ -162,5 +249,25 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     font-size: 11px;
     color: rgba(0, 0, 0, .56);
     line-height: 2;
+}
+
+.keep-login {
+    color: #494949;
+    margin-top: 62px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-box {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+.login-bottom-button{
+    color: #0066CC;
+    font-size: 14px;
+    padding-bottom: 9px;
 }
 </style>

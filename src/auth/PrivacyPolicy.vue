@@ -64,10 +64,13 @@
             <p><strong>电子邮件地址：amos_cloud@yeah.net</strong></p>
         </div>
     </main>
-    <footer>12</footer>
+    <footer>
+        <Footer></Footer>
+    </footer>
 </template>
 
-<script>
+<script setup>
+import Footer from "./components/Footer.vue";
 </script>
 
 <style scoped>
@@ -78,6 +81,7 @@
     flex: 1;
     box-sizing: border-box;
 }
+
 .header {
     display: flex;
     height: 44px;
@@ -90,6 +94,7 @@
     font-size: 20px;
     font-weight: 700;
 }
+
 .privacy-policy {
     padding: 20px 10%;
     line-height: 1.6;

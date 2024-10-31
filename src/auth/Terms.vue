@@ -6,7 +6,8 @@
         <div class="privacy-policy">
             <h1>条款与条件</h1>
             <p>
-                欢迎使用 Amos Cloud 云存储服务。为保障您的权益以及维护平台秩序，请在使用服务之前仔细阅读以下条款与条件。继续使用本服务即视为您同意本条款。</p>
+                欢迎使用 Amos Cloud
+                云存储服务。为保障您的权益以及维护平台秩序，请在使用服务之前仔细阅读以下条款与条件。继续使用本服务即视为您同意本条款。</p>
 
             <h2>1. 服务概述</h2>
             <p>
@@ -59,10 +60,13 @@
             <p>感谢您选择 Amos Cloud 云存储服务。</p>
         </div>
     </main>
-    <footer>12</footer>
+    <footer>
+        <Footer></Footer>
+    </footer>
 </template>
 
-<script>
+<script setup>
+import Footer from "./components/Footer.vue";
 </script>
 
 <style scoped>

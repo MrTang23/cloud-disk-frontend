@@ -14,6 +14,17 @@ export default [
     {
         path: "/login",
         name: "login",
-        component: () => import("../user/Login.vue"),
+        component: () => import("../auth/Login.vue"),
+
+    },
+    {
+        path: "/privacy-policy",
+        name: "privacy-policy",
+        component: () => import("../auth/PrivacyPolicy.vue"),
+    },
+    {
+        path: "/terms-and-conditions",
+        name: "terms-and-conditions",
+        component: () => import("../auth/Terms.vue"),
     },
 ];

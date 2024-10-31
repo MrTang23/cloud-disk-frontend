@@ -13,6 +13,7 @@
 body, #app {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     height: 100vh;
     width: 100vw;
     position: relative;
@@ -21,11 +22,32 @@ body, #app {
 }
 
 
-@media (prefers-color-scheme: light) {
-    :root {
-        /*  浅色主题适配 */
-    }
+/*!* 滚动条样式 *!*/
+/*::-webkit-scrollbar {*/
+/*    width:22px;*/
+/*}*/
 
+/*::-webkit-scrollbar-track {*/
+/*    background: transparent;*/
+/*    margin: 7px 0; !* 距离顶部和底部边缘一定距离 *!*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb {*/
+/*    background-color: rgba(0, 0, 0, 0.3);*/
+/*    border-radius: 30px;*/
+/*    border: 7px solid transparent;*/
+/*    background-clip: padding-box;*/
+/*}*/
+
+/*::-webkit-scrollbar-thumb:hover {*/
+/*    background-color: rgba(0, 0, 0, 0.5); !* 悬停时更深的颜色 *!*/
+/*}*/
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color: rgba(255, 255, 255, 0.9); /* 深色主题下的文本颜色 */
+        background-color: #121212; /* 深色主题下的背景色 */
+    }
 }
 
 

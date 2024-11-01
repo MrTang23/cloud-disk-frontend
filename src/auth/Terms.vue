@@ -79,6 +79,10 @@ import Footer from "./components/Footer.vue";
 }
 
 .header {
+    position: fixed;
+    width: 100vw;
+    backdrop-filter: blur(10px);
+    opacity: 1;
     display: flex;
     height: 44px;
     padding-left: 10px;
@@ -95,7 +99,7 @@ import Footer from "./components/Footer.vue";
     padding: 20px 10%;
     line-height: 1.6;
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 44px auto 0 auto;
 }
 
 .privacy-policy h1 {

@@ -3,13 +3,9 @@
 
 export default [
     {
-        path: "/index",
-        redirect: "/",
-    },
-    {
         path: "/",
         name: "home",
-        component: () => import("../FileManage.vue"),
+        component: () => import("../fileManage/Index.vue"),
     },
     {
         path: "/login",

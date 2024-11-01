@@ -170,6 +170,7 @@ const login = () => {
     font-weight: 900;
     margin-top: 20px;
     line-height: 1;
+    text-align: center;
 }
 
 .login-form {
@@ -286,4 +287,16 @@ const login = () => {
     font-size: 14px;
     padding-bottom: 9px;
 }
+
+/* 小屏幕 (手机横屏, ≥ 576px) */
+@media (max-width: 768px) {
+    .login-box {
+        box-shadow: none;
+        margin-top: 0;
+    }
+    .header{
+        background: rgba(251,251,253,.5);
+    }
+}
+
 </style>

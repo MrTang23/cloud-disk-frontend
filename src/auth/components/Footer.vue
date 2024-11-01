@@ -9,7 +9,7 @@ const openICP = () => {
 <template>
     <footer class="footer footer-text">
         <div class="footer-side">
-            <div @click="window.location.href = '/privacy-policy'" class="footer-item">隐私政策</div>
+            <div @click="router.push('/privacy-policy')" class="footer-item">隐私政策</div>
             <div class="vertical-divider"></div>
             <div @click="router.push('/terms-and-conditions')" class="footer-item">条款与条件</div>
             <div class="vertical-divider"></div>
@@ -73,6 +73,39 @@ const openICP = () => {
     .footer {
         flex-direction: column;
     }
+}
+
+@media (prefers-color-scheme: dark) {
+    .footer {
+        background: #2c2c2e;
+    }
+
+    .footer-text {
+        font-size: 11px;
+        color: #FFFFFFA8;
+        line-height: 2;
+    }
+
+    .footer-item {
+        cursor: pointer;
+        margin: 0 10px 0 10px;
+        transition: all 0.3s ease;
+    }
+
+    .footer-item:hover {
+        color: #fff;
+    }
+
+    .footer-item:active {
+        color: #fff;
+    }
+
+    .vertical-divider {
+        width: 1px;
+        height: 15px;
+        background-color: #7878805c;
+    }
+
 }
 
 </style>

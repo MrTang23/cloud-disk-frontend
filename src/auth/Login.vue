@@ -15,9 +15,17 @@ const ifKeepLoginStatus = ref(false)
 const loginErrorInfo = ref('')
 
 onMounted(() => {
-
+    checkAuthFields()
 })
+const checkAuthFields = () => {
+    const hasLocalAuth = localStorage.getItem('token') && localStorage.getItem('user_id');
+    const hasSessionAuth = sessionStorage.getItem('token') && sessionStorage.getItem('user_id');
 
+    if (hasLocalAuth || hasSessionAuth) {
+        // TODO: 请求信息是否有效
+        router.push('/');
+    }
+}
 const checkUserExist = async () => {
     const identifierValue = identifier.value;
     if (identifierValue) {
@@ -63,6 +71,7 @@ const login = () => {
             showLoginErrorInfo.value = false;
             const storage = ifKeepLoginStatus.value ? localStorage : sessionStorage;
             setStorage(storage, response.data);
+            router.push('/');
         })
         .catch(error => {
             loginErrorInfo.value = error.message || "登录时发生错误";
@@ -137,7 +146,6 @@ const login = () => {
 
 .login-main {
     display: flex;
-    background: transparent;
     flex: 1;
     justify-content: center;
 }
@@ -211,6 +219,11 @@ const login = () => {
     box-sizing: border-box;
 }
 
+.login-input:focus {
+    outline: none;
+    border: 2px solid #0071e3;
+}
+
 .login-placeholder {
     font-size: 17px;
     color: #6e6e73;
@@ -276,10 +289,34 @@ const login = () => {
     justify-content: center;
 }
 
+/* 隐藏原始复选框 */
 .check-box {
+    appearance: none; /* 移除默认样式 */
+    -webkit-appearance: none;
     width: 16px;
     height: 16px;
     margin-right: 10px;
+    border: 1px solid #6e6e73; /* 边框颜色 */
+    border-radius: 2px;
+    background-color: #ffffffa8; /* 未选中状态背景颜色 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 选中时的背景颜色和边框颜色 */
+.check-box:checked {
+    background-color: rgb(0, 113, 235); /* 选中时的背景颜色 */
+    border-color: rgb(0, 113, 235);
+}
+
+/* 选中时显示标记 */
+.check-box:checked::before {
+    font-size: 12px;
+    content: '✓'; /* 选中标记 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .login-bottom-button {
@@ -291,12 +328,49 @@ const login = () => {
 /* 小屏幕 (手机横屏, ≥ 576px) */
 @media (max-width: 768px) {
     .login-box {
-        box-shadow: none;
+        box-shadow: none !important;
         margin-top: 0;
+        padding: 40px 40px 0 40px;
     }
-    .header{
-        background: rgba(251,251,253,.5);
+
+    .header {
+        background: rgba(251, 251, 253, .5);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .header {
+            backdrop-filter: blur(10px);
+            background: rgba(28, 28, 30, .5);
+            border-bottom: 1px solid rgba(28, 28, 30, .5);
+        }
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    .keep-login {
+        color: #ffffff;
+    }
+
+    .login-box {
+        box-shadow: 0 11px 34px 0 rgba(0, 0, 0, 0.65);
+    }
+
+    .login-bottom-button {
+        color: #2997ff;
+    }
+
+    .login-input {
+        color: #fff;
+        background: hsla(0, 0%, 100%, .04);
+    }
+
+    .login-input:not(:placeholder-shown) ~ .input-icon {
+        cursor: pointer;
+        color: #ffffffa8; /* 输入内容后颜色 */
+    }
+
+    .check-box {
+        background: hsla(0, 0%, 100%, .04);
+    }
+}
 </style>

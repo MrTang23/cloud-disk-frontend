@@ -95,7 +95,7 @@ import Footer from "./components/Footer.vue";
     padding: 20px 10%;
     line-height: 1.6;
     max-width: 1000px;
-    margin: 0 auto; /* 居中对齐 */
+    margin: 0 auto;
 }
 
 .privacy-policy h1 {
@@ -105,7 +105,7 @@ import Footer from "./components/Footer.vue";
 }
 
 .privacy-policy h2 {
-    font-size: 1.4em; /* 较小的标题字体大小 */
+    font-size: 1.4em;
     margin-top: 20px;
     color: #333;
 }
@@ -115,7 +115,20 @@ import Footer from "./components/Footer.vue";
     color: #555;
 }
 
-/* 响应式调整 */
+@media (prefers-color-scheme: dark) {
+    .privacy-policy h1 {
+        color: #ffffff;
+    }
+
+    .privacy-policy h2 {
+        color: #cccccc;
+    }
+
+    .privacy-policy p, .privacy-policy li {
+        color: #b3b3b3;
+    }
+}
+
 @media (max-width: 768px) {
     .privacy-policy {
         padding: 15px 5%;

@@ -32,4 +32,12 @@
     color: rgb(0, 113, 235);
     margin-left: 7px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .header{
+        background: #323236;
+        border-bottom: 1px solid transparent;
+    }
+}
+
 </style>

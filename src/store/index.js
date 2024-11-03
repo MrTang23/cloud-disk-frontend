@@ -1,9 +1,9 @@
-// src/store/index.js
+// fetchion/store/index.js
 import {createStore} from 'vuex';
 
 const store = createStore({
     state: {
-        selectedMenu: '最近使用' // 默认选中项
+        selectedMenu: {label: '浏览', icon: 'folder-closed'}, // 默认选中项
     },
     mutations: {
         setSelectedMenu(state, menu) {

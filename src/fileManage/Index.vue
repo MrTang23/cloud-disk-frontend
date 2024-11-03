@@ -27,7 +27,7 @@ const checkAuthFields = () => {
     </header>
     <main class="body">
         <LeftBar></LeftBar>
-        <MainBody></MainBody>
+        <MainBody class="main-body"></MainBody>
     </main>
 </template>
 

@@ -12,14 +12,14 @@ const menuItems = [
     {label: '最近删除', icon: 'trash-can'},
 ];
 
-const selectedIndex = computed(() => menuItems.findIndex(item => item.label === store.state.selectedMenu)); // 从 Vuex 获取选中项
+const selectedIndex = computed(() => menuItems.findIndex(item => item.label === store.state.selectedMenu.label)); // 从 Vuex 获取选中项
 
 onMounted(() => {
     fadeIn.value = true;
 })
 
 const selectItem = (index) => {
-    store.dispatch('selectMenu', menuItems[index].label);
+    store.dispatch('selectMenu', menuItems[index]);
 }
 
 const toggleLeftBar = () => {
@@ -29,7 +29,7 @@ const toggleLeftBar = () => {
 
 <template>
     <div class="icon-box slider-icon" @click="toggleLeftBar">
-        <FontAwesomeIcon :icon="['fas', 'sliders']" class="tool-icon"/>
+        <FontAwesomeIcon :icon="['fas', 'sliders']"/>
     </div>
     <div class="left-bar" :class="{'fade-in': fadeIn, 'fade-out': !fadeIn}">
         <div class="menu">
@@ -64,7 +64,7 @@ const toggleLeftBar = () => {
 }
 
 .menu-item:hover {
-    background: #343437;
+    background: #e6e6eb;
 }
 
 .menu-item:active {
@@ -73,12 +73,12 @@ const toggleLeftBar = () => {
 }
 
 .menu-item.active {
-    background: #343437;
+    background: #e6e6eb;
 }
 
 .menu-icon {
     margin: 0 8px 0 10px;
-    color: hsl(204, 100%, 50%);
+    color: hsl(210, 100%, 45%);
 }
 
 .left-bar {
@@ -93,15 +93,10 @@ const toggleLeftBar = () => {
     overflow: hidden;
 }
 
-.tool-icon {
-    color: hsl(204, 100%, 50%);
-    font-size: 17px;
-}
-
 .slider-icon {
     position: fixed;
     z-index: 9999;
-    margin: 10px 0 0 10px;
+    margin: 5px 0 0 10px;
 }
 
 .icon-box {
@@ -110,15 +105,18 @@ const toggleLeftBar = () => {
     padding: 7px;
     border-radius: 7px;
     cursor: pointer;
+    color: hsl(210, 100%, 45%);
+    font-size: 17px;
 }
 
 .icon-box:hover {
-    background: rgba(118, 118, 128, 0.3);
+    background: #e6e6eb;
 }
 
 .icon-box:active {
-    background: rgba(118, 118, 128, 0.3);
+    background: #e6e6eb;
 }
+
 
 .fade-in {
     animation: slideIn 0.5s ease forwards; /* 显示动画 */
@@ -132,6 +130,30 @@ const toggleLeftBar = () => {
     .left-bar {
         background: #202023;
         border-right: 1px solid #000;
+    }
+
+    .icon-box {
+        color: hsl(204, 100%, 50%);
+    }
+
+    .icon-box:hover {
+        background: rgba(118, 118, 128, 0.3);
+    }
+
+    .icon-box:active {
+        background: rgba(118, 118, 128, 0.3);
+    }
+
+    .menu-icon {
+        color: hsl(204, 100%, 50%);
+    }
+
+    .menu-item:hover {
+        background: #343437;
+    }
+
+    .menu-item.active {
+        background: #343437;
     }
 }
 
@@ -154,6 +176,12 @@ const toggleLeftBar = () => {
     to {
         width: 0;
         opacity: 0;
+    }
+}
+
+@media (max-width: 667px) {
+    .left-bar{
+        display: none;
     }
 }
 </style>

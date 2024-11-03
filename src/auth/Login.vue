@@ -1,6 +1,6 @@
 <script setup>
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {GET, POST} from "../api/httpClient.js";
+import api from "../fetchion/config.js";
 import {onMounted, ref, watch} from "vue";
 import router from "../router/index.js";
 import Footer from "./components/Footer.vue";
@@ -30,10 +30,10 @@ const checkUserExist = async () => {
     const identifierValue = identifier.value;
     if (identifierValue) {
         const url = `/query/find_user?identifier=${encodeURIComponent(identifierValue)}`;
-        return await GET(url)
+        return await api.get(url)
             .then(response => {
                 showUserNotExitInfo.value = false;
-                identifierType.value = response.data
+                identifierType.value = response.data.data
                 document.getElementById('identifier-input').style.borderRadius = '12px 12px 0 0'
                 showPasswordInput.value = true;
 
@@ -60,13 +60,14 @@ const setStorage = (storage, data) => {
 };
 
 const login = () => {
+
     const payload = {
         identifier_type: identifierType.value,
         identifier: identifier.value,
         password: password.value
     };
-
-    POST('/auth/login', payload)
+    console.log(payload)
+    api.post('/auth/login', payload)
         .then(response => {
             showLoginErrorInfo.value = false;
             const storage = ifKeepLoginStatus.value ? localStorage : sessionStorage;

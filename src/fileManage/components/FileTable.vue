@@ -151,4 +151,27 @@ import {getFileTypeByLabel} from '../../assets/fileIcon.js';
     text-overflow: ellipsis;
     padding-right: 10px;
 }
+
+@media (prefers-color-scheme: dark) {
+    .file-table-content {
+        color: #fff;
+    }
+
+    .file-name {
+        color: #fff;
+    }
+
+    .file-table-header {
+        color: #fff;
+    }
+
+    .file-row:hover {
+        background: #343436;
+
+        .more-box {
+            color: gray;
+        }
+    }
+
+}
 </style>

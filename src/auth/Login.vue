@@ -1,8 +1,8 @@
 <script setup>
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import api from "../fetchion/config.js";
 import {onMounted, ref, watch} from "vue";
 import router from "../router/index.js";
+import api from "../../fetchion.config.js";
 import Footer from "./components/Footer.vue";
 
 const showUserNotExitInfo = ref(false);
@@ -60,18 +60,16 @@ const setStorage = (storage, data) => {
 };
 
 const login = () => {
-
     const payload = {
         identifier_type: identifierType.value,
         identifier: identifier.value,
         password: password.value
     };
-    console.log(payload)
     api.post('/auth/login', payload)
         .then(response => {
             showLoginErrorInfo.value = false;
             const storage = ifKeepLoginStatus.value ? localStorage : sessionStorage;
-            setStorage(storage, response.data);
+            setStorage(storage, response.data.data);
             router.push('/');
         })
         .catch(error => {

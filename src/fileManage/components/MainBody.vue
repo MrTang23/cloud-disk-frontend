@@ -2,8 +2,8 @@
 import {computed, onMounted, ref, watch} from 'vue';
 import {useStore} from 'vuex';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import api from "../../../fetchion.config.js";
 import FileTable from "./FileTable.vue";
-import api from "../../fetchion/config.js";
 
 const store = useStore();
 const selectedMenu = computed(() => store.getters.getSelectedMenu);
@@ -12,8 +12,7 @@ onMounted(() => {
     if (selectedMenu.value.label === '浏览') {
         api.get('/query/file_list')
             .then(response => {
-                console.log(111,response);
-                fileList.value = response.data;
+                fileList.value = response.data.data;
             })
             .catch(error => {
                 console.log(error);
